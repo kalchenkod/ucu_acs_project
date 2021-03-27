@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <opencv2/opencv.hpp>
 #include <vector>
 
@@ -16,8 +17,8 @@ void get_info (const cv::Mat &image) {
 }
 
 
-std::vector<std::vector<std::vector<int>>> read_image (const std::string &path) {
-    std::vector<std::vector<std::vector<int>>> content;
+std::vector<std::vector<int>> read_image (const std::string &path) {
+    std::vector<std::vector<int>> content;
     cv::Mat image = cv::imread(path);
 
     //get_info(image);
@@ -29,25 +30,38 @@ std::vector<std::vector<std::vector<int>>> read_image (const std::string &path) 
 
     for(size_t i = 0;i < image.rows; i++)
     {
-        std::vector<std::vector<int>> row;
         for(size_t j = 0; j<image.cols; j++)
         {
             cv::Vec3b intensity = image.at<cv::Vec3b>(i, j);
-            std::vector<int> point = { (int)intensity.val[1],
-                                       (int)intensity.val[0],
-                                       (int)intensity.val[2]};
-            row.push_back(point);
+            std::vector<int> point = { (int)intensity.val[2],
+                                       (int)intensity.val[1],
+                                       (int)intensity.val[0]};
+            content.push_back(point);
         }
-        content.push_back(row);
     }
     return content;
 }
 
 
-int main() {
-    const auto data = read_image("../bad.jpg");
+int main(int argc, char* argv[]) {
+    if (argc != 3) {
+        std::cerr << "Invalid arguments" << std::endl;
+        return -1;
+    }
 
-    //blue - green - red
+    const auto data = read_image(argv[1]);
+    //rgb
+
+    std::ofstream output_file;
+    output_file.open(argv[2]);
+    if( !output_file ) {
+        std::cerr << "File opening error" << std::endl;
+        return -1;
+    }
+    for (const auto &x: data) {
+        output_file << x[0] << " " << x[1] << " " << x[2] << std::endl;
+    }
+    output_file.close();
 
     return 0;
 }
