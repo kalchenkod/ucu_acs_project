@@ -9,8 +9,8 @@
 #include "inc/write_to_file.h"
 
 
-int main() {
-    std::string videoPath = "../test_4.mp4";
+int main(int argc, char *argv[]) {
+    std::string videoPath = argv[1];
     int threads_num = 8;
     const auto fence_0 = get_current_time_fenced();
 
@@ -32,7 +32,7 @@ int main() {
     threads.clear();
 
     const auto fence_1 = get_current_time_fenced();
-    std::cout << "Full time: " << to_us(fence_1 - fence_0) << std::endl;
+    // std::cout << "Full time: " << to_us(fence_1 - fence_0) << std::endl;
 
     write_to_file(result_map);
 
