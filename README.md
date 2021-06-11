@@ -1,12 +1,16 @@
-# ACS Semester project
+# Coursework for *Architecture of computer systems course* at UCU 
 
 ## Topic: Color distribution analysis in movies
-## Aim: To explore the dependecy between color palette used in films and their genres, influence on people
+## Aim
 
-### Contributors: [Danylo Kalchenko]("https://github.com/kalchenkod"), [Oleksandr Kukhar]("https://github.com/etamin-code")
+To get realize an eeficient program, which would provide a clear analysis of color distribution in specific video.
+
+By using it, check for any dependency between colors palette and genre, grade etc. Research the tendency of color usage in modern movie industry. 
+
+### Authors: [Danylo Kalchenko]("https://github.com/kalchenkod"), [Oleksandr Kukhar]("https://github.com/etamin-code")
 
 
-## Usage:
+## Usage
 - Clone project
 ```
 git clone https://github.com/kalchenkod/ucu_acs_project.git
