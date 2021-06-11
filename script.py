@@ -27,6 +27,9 @@ class VideoAnalyser:
                 line = line.strip().split("-")
                 colours.append((int(line[0]), float(line[1])))
                 sum_weights += float(line[1])
+                
+        chdir("../")
+        system("rm -r build")
 
         colours.sort(key=lambda x: x[0])
         rgb_colors = []
@@ -54,7 +57,7 @@ class VideoAnalyser:
 
         #plt.show()
         self._video_path = self._video_path.replace(".mp4", ".png").replace(".avi", ".png").replace(".mov", ".png")
-        fig.savefig("../" + self._video_path)
+        fig.savefig(self._video_path)
 
 
 if __name__ == "__main__":
